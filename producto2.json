@@ -1,0 +1,14 @@
+{
+  "producto_id": {
+    "S": "P002"
+  },
+  "tipo": {
+    "S": "monitor"
+  },
+  "pulgadas": {
+    "N": "27"
+  },
+  "estado": {
+    "S": "PENDIENTE"
+  }
+}

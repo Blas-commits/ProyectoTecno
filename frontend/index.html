@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lomax - Catálogo</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Lomax</h1>
+
+        <nav>
+            <button onclick="mostrarVista('registro')">
+                Registrar producto
+            </button>
+
+            <button onclick="mostrarVista('catalogo')">
+                Catálogo
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- REGISTRO -->
+
+        <section id="vista-registro">
+
+            <h2>Registrar producto</h2>
+
+            <form id="form-producto">
+
+                <label>
+                    Código
+                    <input type="text" id="codigo" required>
+                </label>
+
+                <label>
+                    Nombre
+                    <input type="text" id="nombre" required>
+                </label>
+
+                <label>
+                    Descripción
+                    <textarea id="descripcion" required></textarea>
+                </label>
+
+                <label>
+                    Precio
+                    <input type="number" id="precio" min="0" step="0.01" required>
+                </label>
+
+                <label>
+                    Categoría
+                    <select id="categoria" required>
+                        <option value="">
+                            Seleccionar categoría
+                        </option>
+                    </select>
+                </label>
+
+                <label>Atributos</label>
+
+                <div id="atributos-container">
+
+                    <div class="atributo-row">
+                        <input type="text" class="atributo-clave" placeholder="Nombre del atributo">
+
+                        <input type="text" class="atributo-valor" placeholder="Valor">
+                    </div>
+
+                </div>
+
+                <button type="button" onclick="agregarAtributo()">
+                    + Agregar atributo
+                </button>
+
+                <label>
+                    Fotografía
+                    <input type="file" id="imagen" accept="image/jpeg,image/png" required>
+                </label>
+
+                <button type="submit">
+                    Registrar producto
+                </button>
+
+            </form>
+
+            <div id="mensaje"></div>
+
+        </section>
+
+
+        <!-- CATÁLOGO -->
+
+        <section id="vista-catalogo" style="display:none;">
+
+            <h2>Catálogo</h2>
+
+            <div id="catalogo">
+                Cargando productos...
+            </div>
+
+        </section>
+
+
+        <!-- DETALLE -->
+
+        <section id="vista-detalle" style="display:none;">
+
+            <button onclick="mostrarVista('catalogo')">
+                ← Volver al catálogo
+            </button>
+
+            <div id="detalle">
+                Cargando...
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

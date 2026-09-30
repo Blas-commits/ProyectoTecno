@@ -1,0 +1,228 @@
+BASE DE DATOS - PROYECTO TECNO
+
+========================================
+BASE DE DATOS RELACIONAL (RDS MYSQL)
+========================================
+
+Instancia RDS:
+
+Nombre:
+catalogo-db
+
+Motor:
+MySQL 8.0.36
+
+Usuario:
+admin
+
+Base de datos:
+CatalogoProductos
+
+========================================
+MODELO DE DATOS
+========================================
+
+Tabla: Categorias
+
+- categoria_id (PK)
+- nombre
+
+Tabla: Productos
+
+- producto_id (PK)
+- codigo (UNIQUE)
+- nombre
+- descripcion
+- precio
+- categoria_id (FK)
+- fecha_registro
+- estado
+
+Relación:
+
+Categorias (1)
+|
+|--- (N)
+|
+Productos
+
+========================================
+SCRIPT DE CREACIÓN
+========================================
+
+CREATE DATABASE CatalogoProductos;
+
+USE CatalogoProductos;
+
+CREATE TABLE Categorias(
+    categoria_id INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Productos(
+    producto_id VARCHAR(36) PRIMARY KEY,
+    codigo VARCHAR(30) UNIQUE NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL,
+    categoria_id INT NOT NULL,
+    fecha_registro DATETIME,
+    estado VARCHAR(20),
+
+    CONSTRAINT chk_precio
+    CHECK(precio >= 0),
+
+    FOREIGN KEY(categoria_id)
+    REFERENCES Categorias(categoria_id)
+);
+
+========================================
+CATEGORÍAS REGISTRADAS
+========================================
+
+1 - Teclados
+2 - Monitores
+3 - Mouse
+
+========================================
+PRODUCTOS REGISTRADOS
+========================================
+
+Cantidad total:
+
+20 productos
+
+Distribución:
+
+Teclados:
+P001
+P002
+P003
+P004
+P013
+P014
+P019
+
+Monitores:
+P005
+P006
+P007
+P008
+P015
+P016
+P020
+
+Mouse:
+P009
+P010
+P011
+P012
+P017
+P018
+
+========================================
+VALIDACIONES IMPLEMENTADAS
+========================================
+
+1. Código duplicado
+
+Restricción:
+
+UNIQUE(codigo)
+
+Resultado:
+
+ERROR 1062
+Duplicate entry 'TEC001'
+
+========================================
+
+2. Precio negativo
+
+Restricción:
+
+CHECK(precio >= 0)
+
+Resultado:
+
+ERROR 3819
+Check constraint 'chk_precio' is violated
+
+========================================
+
+3. Categoría inexistente
+
+Restricción:
+
+FOREIGN KEY(categoria_id)
+
+Resultado:
+
+ERROR 1452
+Foreign key constraint fails
+
+========================================
+BASE DE DATOS NOSQL
+========================================
+
+Servicio:
+Amazon DynamoDB
+
+Tabla:
+ProductosMetadata
+
+Clave primaria:
+
+producto_id
+
+========================================
+REGISTROS DE EJEMPLO
+========================================
+
+P001
+
+tipo = teclado
+conexion = USB
+estado = PENDIENTE
+
+P002
+
+tipo = monitor
+pulgadas = 27
+estado = PENDIENTE
+
+========================================
+RELACIÓN ENTRE RDS Y DYNAMODB
+========================================
+
+La relación lógica entre ambas bases de datos se realiza mediante:
+
+producto_id
+
+RDS:
+Productos.producto_id
+
+DynamoDB:
+ProductosMetadata.producto_id
+
+========================================
+RESULTADO FINAL
+========================================
+
+RDS:
+Funcionando
+
+DynamoDB:
+Funcionando
+
+Relación lógica:
+Implementada mediante producto_id
+
+Cantidad de productos:
+20
+
+Cantidad de categorías:
+3
+
+Validaciones:
+Completadas exitosamente

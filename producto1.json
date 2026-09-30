@@ -1,0 +1,14 @@
+{
+  "producto_id": {
+    "S": "P001"
+  },
+  "tipo": {
+    "S": "teclado"
+  },
+  "conexion": {
+    "S": "USB"
+  },
+  "estado": {
+    "S": "PENDIENTE"
+  }
+}
